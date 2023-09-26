@@ -33,4 +33,4 @@ class SiteSetup(models.Model):
     show_footer = models.BooleanField(default=True)
 
     def __str__(self) -> str:
-        return self.titles
+        return self.title
