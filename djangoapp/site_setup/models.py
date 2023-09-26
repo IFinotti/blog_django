@@ -32,5 +32,7 @@ class SiteSetup(models.Model):
     show_pagination = models.BooleanField(default=True)
     show_footer = models.BooleanField(default=True)
 
+    favicon - models.ImageField()
+
     def __str__(self) -> str:
         return self.title
