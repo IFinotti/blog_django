@@ -1,4 +1,5 @@
 from django.db import models
+from utils.model_validators import validate_png
 
 # Create your models here.
 
@@ -34,8 +35,16 @@ class SiteSetup(models.Model):
 
     favicon = models.ImageField(
         upload_to='assets/favicon/%Y/%m/',
-        blank=True, default=''
+        blank=True, default='', validators=[validate_png],
     )
+
+    def save(self, *args, **kwargs):
+        current_favicon_name = str(self.favicon.name)
+        super().save(*args, **kwargs)
+        favicon_changed = False
+        
+        if self.favicon:
+            favicon_changed=
 
     def __str__(self) -> str:
         return self.title
