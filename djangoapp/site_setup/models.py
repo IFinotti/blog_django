@@ -1,5 +1,6 @@
 from django.db import models
 from utils.model_validators import validate_png
+from utils.images import resize_image
 
 # Create your models here.
 
@@ -44,7 +45,10 @@ class SiteSetup(models.Model):
         favicon_changed = False
         
         if self.favicon:
-            favicon_changed=
+            favicon_changed=current_favicon_name != self.favicon.name
+
+        if favicon_changed:
+            resize_image(self.favicon, 32)
 
     def __str__(self) -> str:
         return self.title
