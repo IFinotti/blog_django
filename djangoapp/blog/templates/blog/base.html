@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
-    {% include "blog/partials/_head.html" %}
+    {% include 'blog/partials/_head.html' %}
   </head>
   <body>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, ea.</p>
-    <h1>exeplo:{{ site_setup }}</h1>
-    {% include "blog/partials/_header.html" %}
-    <!-- eslint-disable -->
-    {% block content %}{% endblock content %}
-    <!-- eslint-disable -->
-    {% include "blog/partials/_pagination.html" %}
-    <!-- eslint-disable -->
-    {% include "blog/partials/_footer.html" %}
-    <!-- eslint-disable -->
-    {% include "blog/partials/_temp.html" %}
+    <div class="blog-wrapper">
+      {% include 'blog/partials/_header.html' %}
+      <!-- disable-eslint -->
+      {% block content %}{% endblock content %}
+      <!-- disable-eslint -->
+      {% include 'blog/partials/_pagination.html' %}
+      <!-- disable-eslint -->
+      {% include 'blog/partials/_footer.html' %}
+    </div>
   </body>
 </html>
