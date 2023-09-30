@@ -7,3 +7,13 @@ def index(request):
         request,
         'blog/pages/index.html'
     )
+def index(request):
+    return render(
+        request,
+        'blog/pages/page.html'
+    )
+def index(request):
+    return render(
+        request,
+        'blog/pages/post.html'
+    )
