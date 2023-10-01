@@ -1,4 +1,5 @@
 from django.db import models
+from utils.rands import new_slugify
 
 class Tag(models.Model):
     class Meta:
@@ -19,5 +20,5 @@ class Tag(models.Model):
     # the user has no need to send a slug by itself
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = 'new_slug'
+            self.slug = new_slugify(self.name, 5)
         return super().save(*args, **kwargs)
