@@ -5,13 +5,27 @@
   </head>
   <body>
     <div class="blog-wrapper">
+      {% if site_setup.show_header %}
+      <!-- disable-eslint -->
       {% include 'blog/partials/_header.html' %}
+      <!-- disable-eslint -->
+      {% endif %}
+
       <!-- disable-eslint -->
       {% block content %}{% endblock content %}
       <!-- disable-eslint -->
+      {% if site_setup.show_pagination %}
+      <!-- disable-eslint -->
       {% include 'blog/partials/_pagination.html' %}
       <!-- disable-eslint -->
+      {% endif %}
+      <!-- disable-eslint -->
+      {% if site_setup.show_pagination %}
+      <!-- disable-eslint -->
       {% include 'blog/partials/_footer.html' %}
+      <!-- disable-eslint -->
+
+      {% endif %}
     </div>
   </body>
 </html>
