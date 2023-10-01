@@ -57,7 +57,10 @@ class Page(models.Model):
         blank=True, 
         max_length=255
     )
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(
+        default=False, 
+        help_text='This field must be marked to the page be show publicly'
+    )
     content = models.TextField
 
     def save(self, *args, **kwargs):
