@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from utils.rands import new_slugify
 
 class Tag(models.Model):
@@ -100,10 +101,25 @@ class Post(models.Model):
         help_text='Do you wanna show the image cover on the post content too??'
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    # user.post_created_by.all
+    created_by = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL,
+        blank=True, 
+        null=True, related_name='post_created_by'
+    )
     updated_at = models.DateTimeField(auto_now=True)
+    # user.post_updated_by.all
+    updated_by = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL,
+        blank=True, 
+        null=True, related_name='post_updated_by'
+    )
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True, default=None
     )
+
     tags = models.ManyToManyField(Tag, blank=True, default='')
 
     def __str__(self) -> str:
