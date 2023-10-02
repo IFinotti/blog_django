@@ -99,5 +99,17 @@ class Post(models.Model):
         default=True,
         help_text='Do you wanna show the image cover on the post content too??'
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, blank=True, default=None
+    )
+    tags =models.ManyToManyField(Tag, blank=True, default='')
 
-     
+    def __str__(self) -> str:
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = new_slugify(self.title, 5)
+        return super().save(*args, **kwargs)
