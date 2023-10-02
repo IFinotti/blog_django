@@ -65,7 +65,7 @@ class Page(models.Model):
         default=False, 
         help_text='This field must be marked to the page be show publicly'
     )
-    content = models.TextField()
+    content = models.TextField(default='')
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -104,7 +104,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True, default=None
     )
-    tags =models.ManyToManyField(Tag, blank=True, default='')
+    tags = models.ManyToManyField(Tag, blank=True, default='')
 
     def __str__(self) -> str:
         return self.title
