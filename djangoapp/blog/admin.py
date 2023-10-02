@@ -35,7 +35,7 @@ class PageAdmin(admin.ModelAdmin):
         "slug": ('title',),
     }
 
-
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     summernote_fields = 'content',
     list_display = 'id', 'title', 'is_published', 'created_by',
@@ -50,3 +50,11 @@ class PostAdmin(admin.ModelAdmin):
         "slug": ('title',),
     }
     autocomplete_fields = 'tags', 'category',
+
+    def save_model(self, request, obj, form, change):
+        if change:
+            obj.updated_by = request.user
+        else:
+            obj.created_by = request.user
+
+        obj.save()
