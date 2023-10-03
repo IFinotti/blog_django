@@ -95,6 +95,11 @@ class Page(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class PostManager(models.Manager):
+    def get_published(self):
+        return self.filter(is_published=True).order_by('-pk')
+
+
 class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
@@ -108,6 +113,7 @@ class Post(models.Model):
         blank=True, 
         max_length=255
     )
+    objects = PostManager()
     excerpt = models.CharField(max_length=150)
     is_published = models.BooleanField(
         default=False, 
