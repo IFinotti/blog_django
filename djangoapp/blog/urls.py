@@ -8,7 +8,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('post/<slug:slug>/', post, name='post'),
     path('page/<slug:slug>/', page, name='page'),
-    path('created_by/<int:author_id>/', created_by, name='created_by'),
+    path('created_by/<int:author_pk>/', created_by, name='created_by'),
     
 ]
 
