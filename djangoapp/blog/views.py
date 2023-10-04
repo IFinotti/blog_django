@@ -23,7 +23,7 @@ def index(request): # this one below
     )
 
 
-def page(request):
+def page(request, slug):
     return render(
         request,
         'blog/pages/page.html',
@@ -40,5 +40,19 @@ def post(request, slug):
         'blog/pages/post.html',
         {
             'post':post
+        }
+    )
+
+def created_by(request, author_id):
+    posts = Post.objects.get_published()
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        'blog/pages/index.html',
+        {
+            'page_obj': page_obj,
         }
     )
