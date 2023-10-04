@@ -10,15 +10,25 @@
       </div>
       {% endif %}
 
-      <h2 class="single-post-title pb-base center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </h2>
+      <h2 class="single-post-title pb-base center">{{ post.title }}</h2>
 
       <div class="post-meta pb-base">
         <div class="post-meta-item">
           <a class="post-meta-link" href="#">
             <i class="fa-solid fa-user"></i>
-            <span> Author Full Name </span>
+            <span>
+              {% if post.created_by.first_name %}
+              <!-- disable-eslint -->
+              {{ post.created_by.first_name }}
+              <!-- disable-eslint -->
+              {{ post.created_by.last_name }}
+              <!-- disable-eslint -->
+              {% else %}
+              <!-- disable-eslint -->
+              {{ post.created_by.username }}
+              <!-- disable-eslint -->
+              {% endif %}
+            </span>
           </a>
         </div>
         <div class="post-meta-item">
