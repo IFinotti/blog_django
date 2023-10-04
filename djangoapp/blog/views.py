@@ -33,7 +33,7 @@ def page(request):
     )
 
 
-def post(request):
+def post(request, slug):
     return render(
         request,
         'blog/pages/post.html',
