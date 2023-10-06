@@ -85,8 +85,8 @@ def tags(request, slug):
         }
     )
 
-def search(request):
-    search_value = 'Anything'
+def search(request): # The one with capital letter is a HTTP method, and the another one is from python 
+    search_value = request.GET.get('search', '').strip()
     posts = Post.objects.get_published().filter(
         Q(title__icontains=search_value) |
         Q(excerpt__icontains=search_value) |
