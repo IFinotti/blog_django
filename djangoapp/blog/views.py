@@ -98,5 +98,6 @@ def search(request):
         'blog/pages/index.html',
         {
             'page_obj': posts,
+            'search_value': search_value
         }
     )
