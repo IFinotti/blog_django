@@ -28,24 +28,36 @@ def index(request): # this one below
 
 def page(request, slug):
     page = Page.objects.filter(is_published=True).filter(slug=slug).first()
+    
+    if page is None:
+        raise Http404()
+    page_title = f'{page.title} - Page - '
+    
+    
     return render(
         request,
         'blog/pages/page.html',
         {
             'page': page,
-            'page_title': 'Home - '
+            'page_title': page_title,
         }
     )
 
 
 def post(request, slug):
     post = Post.objects.get_published().filter(slug=slug).first()
+    
+    if post is None:
+        raise Http404()
+    
+    page_title = f'{post.title} - Post - '
+    
     return render(
         request,
         'blog/pages/post.html',
         {
             'post':post,
-            'page_title': 'Home - '
+            'page_title': page_title,
 
         }
     )
