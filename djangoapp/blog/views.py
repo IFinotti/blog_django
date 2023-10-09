@@ -78,16 +78,22 @@ def created_by(request, author_pk):
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug)
+    
+
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
+
+    if len(posts) == 0:
+        raise Http404()
+    page_title = f'{page_obj[0].category.name} - Category - '
 
     return render(
         request,
         'blog/pages/index.html',
         {
             'page_obj': page_obj,
-            'page_title': 'Home - '
+            'page_title': page_title,
         }
     )
 
@@ -97,12 +103,16 @@ def tags(request, slug):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
+    if len(posts) == 0:
+        raise Http404()
+    page_title = f'{page_obj[0].tags.first().name} - Tag - '
+
     return render(
         request,
         'blog/pages/index.html',
         {
             'page_obj': page_obj,
-            'page_title': 'Home - '
+            'page_title': page_title,
         }
     )
 
@@ -114,12 +124,14 @@ def search(request): # The one with capital letter is a HTTP method, and the ano
         Q(content__icontains=search_value) 
     )[:PER_PAGE]
 
+    page_title = f'{search_value[:30]} - Search - '
+
     return render(
         request,
         'blog/pages/index.html',
         {
             'page_obj': posts,
             'search_value': search_value,
-            'page_title': 'Home - '
+            'page_title': page_title,
         }
     )
