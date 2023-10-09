@@ -4,7 +4,8 @@ from blog.models import Post, Page
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.http import Http404
-# Create your views here.
+
+# query-set = more than one object 
 
 PER_PAGE = 9
 
