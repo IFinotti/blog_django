@@ -24,7 +24,7 @@ def index(request): # this one below
 
 
 def page(request, slug):
-    page = Page.objects.get_published().filter(slug=slug).first()
+    page = Page.objects.filter(is_published=True).filter(slug=slug).first()
     return render(
         request,
         'blog/pages/page.html',
