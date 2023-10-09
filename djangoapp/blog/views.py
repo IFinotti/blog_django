@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from blog.models import Post
+from blog.models import Post, Page
 from django.db.models import Q
 # Create your views here.
 
@@ -24,11 +24,12 @@ def index(request): # this one below
 
 
 def page(request, slug):
+    page = Page.objects.get_published().filter(slug=slug).first()
     return render(
         request,
         'blog/pages/page.html',
         {
-            # 'page_obj': page_obj,
+            'page': page,
         }
     )
 
