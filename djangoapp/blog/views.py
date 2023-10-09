@@ -19,6 +19,7 @@ def index(request): # this one below
         'blog/pages/index.html',
         {
             'page_obj': page_obj,
+            'page_title': 'Home - '
         }
     )
 
@@ -30,6 +31,7 @@ def page(request, slug):
         'blog/pages/page.html',
         {
             'page': page,
+            'page_title': 'Home - '
         }
     )
 
@@ -40,7 +42,9 @@ def post(request, slug):
         request,
         'blog/pages/post.html',
         {
-            'post':post
+            'post':post,
+            'page_title': 'Home - '
+
         }
     )
 
@@ -55,6 +59,7 @@ def created_by(request, author_pk):
         'blog/pages/index.html',
         {
             'page_obj': page_obj,
+            'page_title': 'Home - '
         }
     )
 
@@ -69,6 +74,7 @@ def category(request, slug):
         'blog/pages/index.html',
         {
             'page_obj': page_obj,
+            'page_title': 'Home - '
         }
     )
 
@@ -83,6 +89,7 @@ def tags(request, slug):
         'blog/pages/index.html',
         {
             'page_obj': page_obj,
+            'page_title': 'Home - '
         }
     )
 
@@ -99,6 +106,7 @@ def search(request): # The one with capital letter is a HTTP method, and the ano
         'blog/pages/index.html',
         {
             'page_obj': posts,
-            'search_value': search_value
+            'search_value': search_value,
+            'page_title': 'Home - '
         }
     )
