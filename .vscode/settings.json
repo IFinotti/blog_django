@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -3,
+  "window.zoomLevel": -4,
   "editor.fontSize": 24,
   "editor.hover.enabled": true,
   "workbench.startupEditor": "none",
@@ -22,9 +22,9 @@
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.fixAll.unusedImports": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.fixAll.unusedImports": "explicit",
+      "source.organizeImports": "explicit"
     }
   },
   "python.languageServer": "Pylance",
