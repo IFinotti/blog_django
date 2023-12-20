@@ -110,24 +110,24 @@ def category(request, slug):
         }
     )
 
-# def tags(request, slug):
-#     posts = Post.objects.get_published().filter(tags__slug=slug)
-#     paginator = Paginator(posts, PER_PAGE)
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
+def tags(request, slug):
+    posts = Post.objects.get_published().filter(tags__slug=slug)
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
-#     if len(posts) == 0:
-#         raise Http404()
-#     page_title = f'{page_obj[0].tags.first().name} - Tag - '
+    if len(posts) == 0:
+        raise Http404()
+    page_title = f'{page_obj[0].tags.first().name} - Tag - '
 
-#     return render(
-#         request,
-#         'blog/pages/index.html',
-#         {
-#             'page_obj': page_obj,
-#             'page_title': page_title,
-#         }
-#     )
+    return render(
+        request,
+        'blog/pages/index.html',
+        {
+            'page_obj': page_obj,
+            'page_title': page_title,
+        }
+    )
 
 def search(request): # The one with capital letter is a HTTP method, and the another one is from python 
     search_value = request.GET.get('search', '').strip()
